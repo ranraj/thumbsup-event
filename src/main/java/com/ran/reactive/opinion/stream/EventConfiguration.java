@@ -38,10 +38,10 @@ public class EventConfiguration {
 		CorsConfiguration config = new CorsConfiguration();
 
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin(getCrossAllowedUrl());		
+		config.addAllowedOrigin("*");		
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
-
+		 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", config);
 
