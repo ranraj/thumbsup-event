@@ -14,20 +14,20 @@ java -jar opinion-event-application/target/opinion-event-application-0.0.1-SNAPS
 
 API
 
-GET
-
-curl -X GET http://localhost:8080/events
-
-POST
-
-http://localhost:8080/events
-
+### Create
 ```
-    {
-        "id_str": "61417d7d2b7e6878f936bf85",
-        "created_at": null,
-        "question": "What is you most favourite version controll system?",
-        "image_url": null,
-        "user": null
-    }
-```    
+curl --location --request POST 'http://localhost:8080/events' \
+--header 'Content-Type: application/json' \
+--data-raw '{                
+        "question": "REST client for testing?"                
+}'
+```
+
+### Fetch All
+```
+curl --location --request GET 'http://localhost:8080/events'
+```
+
+Lombok STS integration
+
+[Lombo](https://i.stack.imgur.com/3bxKE.png)

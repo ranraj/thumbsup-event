@@ -26,7 +26,7 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 
 @Configuration
-public class TweetStreamConfiguration {
+public class EventConfiguration {
 	
 	@Value("${cors.allowed.url}")
 	private String crossAllowedUrl;
