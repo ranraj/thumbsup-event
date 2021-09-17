@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ran.reactive.opinion.stream.model.Event;
+import com.ran.reactive.opinion.stream.model.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,10 +32,14 @@ public class EventVO {
     @JsonProperty("question")
     private String question;
 	
+    @JsonProperty("user")
+    private User user;
+    
 	public static EventVO parse(Event event){
     	EventVO eventVO = new EventVO();
     	eventVO.id = event.getId();
     	eventVO.question = event.getQuestion();
+    	eventVO.user = event.getUser();
     	return eventVO;
     }
      

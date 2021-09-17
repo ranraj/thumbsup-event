@@ -47,7 +47,8 @@ public class Event {
     public static Event parse(EventVO eventVO){
     	Event event = new Event();
     	event.id = eventVO.getId();
-    	event.question = eventVO.getQuestion();
+    	event.question = eventVO.getQuestion();    	
+    	event.user = eventVO.getUser();
     	return event;
     }
      
