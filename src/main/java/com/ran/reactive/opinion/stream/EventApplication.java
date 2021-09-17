@@ -37,7 +37,7 @@ public class EventApplication {
 	/**
 	 * Rest API Router
 	 * 
-	 * @param reactiveTweetRepository
+	 * @param ReactiveEventRepository
 	 * @return
 	 */
 
@@ -45,19 +45,21 @@ public class EventApplication {
 	private OpinionHanlder opinionHandler;
 
 	@Bean
-	RouterFunction<ServerResponse> routes(ReactiveEventRepository reactiveTweetRepository, ReactivePostRepository reactivePostRepository) {
+	RouterFunction<ServerResponse> routes(ReactiveEventRepository reactiveEventRepository, ReactivePostRepository reactivePostRepository) {
 		return route(GET("/stream/events/{eventId}/posts"),
 				request -> ok().contentType(MediaType.TEXT_EVENT_STREAM)
 						.body(reactivePostRepository.findWithTailableCursorBy(request.pathVariable("eventId")), Post.class))
 								.andRoute(GET("/stream/events/{eventId}"),
 										request -> ok().contentType(MediaType.TEXT_EVENT_STREAM)
-								.body(reactiveTweetRepository.findWithTailableCursorBy(request.pathVariable("eventId")), Event.class))
+								.body(reactiveEventRepository.findWithTailableCursorBy(request.pathVariable("eventId")), Event.class))
+								.andRoute(RequestPredicates.POST("/events").and(RequestPredicates.accept(MediaType.APPLICATION_JSON))
+										.and(RequestPredicates.contentType(MediaType.APPLICATION_JSON)), opinionHandler::addTweet)
 								.andRoute(GET("/events"),
 										request -> ok().contentType(MediaType.APPLICATION_JSON)
-												.body(reactiveTweetRepository.findAll(), Event.class))
+												.body(reactiveEventRepository.findAll(), Event.class))
 								.andRoute(GET("/events/{eventId}"),
 										request -> ok().contentType(MediaType.APPLICATION_JSON)
-												.body(reactiveTweetRepository.findById(request.pathVariable("eventId")), Event.class))
+												.body(reactiveEventRepository.findById(request.pathVariable("eventId")), Event.class))
 								.andRoute(
 										RequestPredicates.POST("/events/{eventId}/posts")
 												.and(RequestPredicates.accept(MediaType.APPLICATION_JSON))
