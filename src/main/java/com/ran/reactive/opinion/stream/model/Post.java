@@ -52,6 +52,7 @@ public class Post {
 		post.createdAt = postVO.getCreatedAt();
 		post.message = postVO.getMessage();
 		post.imageUrl = postVO.getImageUrl();
+		post.user = postVO.getUser();
     	return post;
     }
      

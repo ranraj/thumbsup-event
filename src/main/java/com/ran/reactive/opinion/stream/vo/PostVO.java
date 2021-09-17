@@ -37,6 +37,7 @@ public class PostVO {
 		postVO.createdAt = post.getCreatedAt();
 		postVO.message = post.getMessage();
 		postVO.imageUrl = post.getImageUrl();
+		postVO.user = post.getUser();
 		return postVO;
 	}
 

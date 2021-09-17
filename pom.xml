@@ -15,7 +15,7 @@
 	<name>opinion-event-application</name>
 	<packaging>jar</packaging>
 	<url>http://ranraj.github.io</url>
-	
+	<version>0.0.1.RELEASE</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>				
